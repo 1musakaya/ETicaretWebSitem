@@ -1,0 +1,50 @@
+﻿@model ETicaretWebSitem.Models.Urunler
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Urunler</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UrunAD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UrunAD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UrunAcikalamasi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UrunAcikalamasi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UrunFiyatı)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UrunFiyatı)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kategoriler.KategoriAD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kategoriler.KategoriAD)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.UrunID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

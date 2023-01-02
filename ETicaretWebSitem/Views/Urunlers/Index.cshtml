@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ETicaretWebSitem.Models.Urunler>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UrunAD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UrunAcikalamasi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UrunFiyatı)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kategoriler.KategoriAD)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UrunAD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UrunAcikalamasi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UrunFiyatı)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kategoriler.KategoriAD)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.UrunID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.UrunID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.UrunID })
+        </td>
+    </tr>
+}
+
+</table>

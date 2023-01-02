@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ETicaretWebSitem.Models.Kategoriler>
+
+    @{
+        ViewBag.Title = "Index";
+    }
+
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Yeni Kayıt", "Create",null ,new {@class="btn btn-success"})
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.KategoriAD)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.KategoriAD)
+            </td>
+            <td>
+                @Html.ActionLink("Düzenle", "Edit", new { id=item.KategoriID },new {@class="btn btn-success"})
+                @Html.ActionLink("Detay", "Details", new { id=item.KategoriID }, new { @class = "btn btn-success" })
+                @Html.ActionLink("Sil", "Delete", new { id=item.KategoriID }, new { @class = "btn btn-success" })
+            </td>
+        </tr>
+    }
+
+    </table>
+
+
