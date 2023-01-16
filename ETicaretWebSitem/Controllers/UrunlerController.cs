@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -10,7 +11,7 @@ using ETicaretWebSitem.Models;
 
 namespace ETicaretWebSitem.Controllers
 {
-    public class UrunlersController : Controller
+    public class UrunlerController : Controller
     {
         private ETicaretEntities db = new ETicaretEntities();
 
@@ -48,16 +49,23 @@ namespace ETicaretWebSitem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UrunID,UrunAD,KategoriID,UrunAcikalamasi,UrunFiyatı")] Urunler urunler)
+        public ActionResult Create(Urunler urunler, HttpPostedFileBase urunResim)
         {
             if (ModelState.IsValid)
             {
                 db.Urunler.Add(urunler);
                 db.SaveChanges();
+
+                if (urunResim != null)
+                {
+                    string dosya = Path.Combine(Server.MapPath("~/Resim/"), urunler.UrunID + ".jpg");
+                    urunResim.SaveAs(dosya);
+                }
+
                 return RedirectToAction("Index");
             }
 
-            ViewBag.KategoriID = new SelectList(db.Kategoriler, "KategoriID", "KategoriAD", urunler.KategoriID);
+            ViewBag.KategoriID = new SelectList(db.Kategoriler, "KategoriID", "KategoriAdi", urunler.KategoriID);
             return View(urunler);
         }
 
@@ -77,20 +85,23 @@ namespace ETicaretWebSitem.Controllers
             return View(urunler);
         }
 
-        // POST: Urunlers/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UrunID,UrunAD,KategoriID,UrunAcikalamasi,UrunFiyatı")] Urunler urunler)
+        public ActionResult Edit(Urunler urunler, HttpPostedFileBase urunResim)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(urunler).State = EntityState.Modified;
                 db.SaveChanges();
+                if (urunResim != null)
+                {
+                    string dosya = Path.Combine(Server.MapPath("~/Resim/"), urunler.UrunID + ".jpg");
+                    urunResim.SaveAs(dosya);
+                }
                 return RedirectToAction("Index");
             }
-            ViewBag.KategoriID = new SelectList(db.Kategoriler, "KategoriID", "KategoriAD", urunler.KategoriID);
+            ViewBag.KategoriID = new SelectList(db.Kategoriler, "KategoriID", "KategoriAdi", urunler.KategoriID);
             return View(urunler);
         }
 
@@ -117,6 +128,15 @@ namespace ETicaretWebSitem.Controllers
             Urunler urunler = db.Urunler.Find(id);
             db.Urunler.Remove(urunler);
             db.SaveChanges();
+            string dosya = Path.Combine(Server.MapPath("~/Resim/"), id + ".jpg");
+
+            FileInfo fi = new FileInfo(dosya);
+
+            if (fi.Exists)
+            {
+                fi.Delete();
+            }
+
             return RedirectToAction("Index");
         }
 

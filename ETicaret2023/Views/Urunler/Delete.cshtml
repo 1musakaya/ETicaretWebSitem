@@ -1,0 +1,56 @@
+﻿@model ETicaret2023.Models.Urunler
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3>Ürünü silmek istediğinize emin misiniz?</h3>
+<div class="row">
+ 
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UrunAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UrunAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UrunAciklamasi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UrunAciklamasi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UrunFiyati)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UrunFiyati)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kategoriler.KategoriAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kategoriler.KategoriAdi)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+<div class="row">
+    <div class="col-md-10 col-lg-offset-1">
+        <input type="submit" value="Sil" class="btn btn-danger" />
+        @Html.ActionLink("Listeye dön", "Index", null, new { @class = "btn btn-warning" })
+    </div>
+    </div>
+    }
+</div>

@@ -4,16 +4,17 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Ürünler</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Yeni Kayıt", "Create", null, new { @class = "btn btn-success" })
 </p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.UrunAD)
         </th>
+        <th>Resim</th>
         <th>
             @Html.DisplayNameFor(model => model.UrunAcikalamasi)
         </th>
@@ -41,9 +42,9 @@
             @Html.DisplayFor(modelItem => item.Kategoriler.KategoriAD)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.UrunID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.UrunID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.UrunID })
+            @Html.ActionLink("Düzenle", "Edit", new { id = item.UrunID }, new { @class = "btn btn-success btn-sm" })
+            @Html.ActionLink("Detay", "Details", new { id = item.UrunID }, new { @class = "btn btn-warning btn-sm" })
+            @Html.ActionLink("Sil", "Delete", new { id = item.UrunID }, new { @class = "btn btn-danger btn-sm" })
         </td>
     </tr>
 }

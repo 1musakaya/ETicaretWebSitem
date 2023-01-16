@@ -21,6 +21,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.KategoriID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.KategoriID }, new { @class = "btn btn-success" })
+    @Html.ActionLink("Listeye dön", "Index", null, new { @class = "btn btn-warning" })
 </p>

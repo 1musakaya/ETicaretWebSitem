@@ -44,7 +44,12 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.UrunID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div class="row">
+    <div class="col-md-10 col-lg-offset-1">
+        <p>
+            @Html.ActionLink("Düzenle", "Edit", new { id = Model.UrunID }, new { @class = "btn btn-success" })
+            @Html.ActionLink("Listeye dön", "Index", null, new { @class = "btn btn-warning" })
+        </p>
+    </div>
+
+</div>
